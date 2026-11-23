@@ -1,60 +1,761 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Rapitah</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: auto; padding: 30px; background-color: #f4f4f9; }
-        .container { background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        header { border-bottom: 2px solid #2c3e50; padding-bottom: 20px; margin-bottom: 20px; text-align: center; }
-        h1 { margin: 0; color: #2c3e50; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 30px; }
-        .contact-info { font-size: 1em; color: #555; margin-top: 10px; }
-        .contact-info a { color: #2c3e50; text-decoration: none; font-weight: bold; }
-.contact-info a:hover { text-decoration: underline; color: #3498db; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portofolio Rapitah, Freelance Web Developer yang menyediakan jasa pembuatan website dan dashboard.">
+  <title>Rapitah | Freelance Web Developer</title>
+
+  <style>
+    :root {
+      --navy: #102b50;
+      --blue: #2563eb;
+      --light-blue: #eff6ff;
+      --white: #ffffff;
+      --text: #26364b;
+      --muted: #68778b;
+      --border: #e5eaf1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: var(--navy);
+    }
+
+    /* BUTTON */
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--blue);
+      color: var(--blue);
+    }
+
+    .btn-outline:hover {
+      background: var(--light-blue);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 100px 0 90px;
+      background: linear-gradient(135deg, #f5f9ff, #eaf2ff);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--blue);
+      background: #dceaff;
+      padding: 7px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .profile-card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(25,65,120,.10);
+      border: 1px solid var(--border);
+    }
+
+    .profile-icon {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      background: var(--light-blue);
+      color: var(--blue);
+      font-size: 48px;
+      font-weight: 800;
+    }
+
+    .profile-card h3 {
+      color: var(--navy);
+      font-size: 23px;
+    }
+
+    .profile-card p {
+      font-size: 14px;
+      margin: 5px 0 18px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #e9f9ef;
+      color: #16803d;
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* GENERAL SECTION */
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 70px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading small {
+      color: var(--blue);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: 34px;
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* ABOUT */
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* SKILLS */
+    .skills {
+      background: #f7faff;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 27px;
+      border-radius: 15px;
+      transition: .25s;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(20,60,110,.08);
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--light-blue);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .skill-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* PROJECTS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: .25s;
+      background: white;
+    }
+
+    .project-image {
+      height: 180px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #dceaff, #f1f6ff);
+      color: var(--blue);
+      font-size: 55px;
+    }
+
+    .project-info {
+      padding: 24px;
+    }
+
+    .project-info h3 {
+      color: var(--navy);
+      margin-bottom: 9px;
+    }
+
+    .project-info p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .project-type {
+      display: inline-block;
+      margin-top: 14px;
+      background: var(--light-blue);
+      color: var(--blue);
+      padding: 5px 11px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* SERVICES */
+    .services {
+      background: #f7faff;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 28px;
+      transition: .25s;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      max-width: 720px;
+      margin: auto;
+      text-align: center;
+      background: var(--navy);
+      color: white;
+      padding: 45px 30px;
+      border-radius: 20px;
+    }
+
+    .contact-box h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: #d3dfef;
+      margin-bottom: 25px;
+    }
+
+    .contact-box .btn {
+      background: white;
+      color: var(--navy);
+    }
+
+    .social-links {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a1e38;
+      color: #cbd5e1;
+      padding: 23px 0;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 22px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--border);
+        gap: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+      }
+
+      .skill-grid,
+      .service-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .section-heading h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <h1>Rapitah</h1>
-        <div class="contact-info">
-    <p>Email: <a href="mailto:rufitaaprilia1@gmail.com">rufitaaprilia1@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/rufita-aprilia-45629937a" target="_blank">linkedin.com/in/rufita-aprilia-45629937a</a></p>
-</div>
-        </div>
-    </header>
+  <!-- NAVBAR -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Rapi<span>tah.</span></a>
 
-    <section>
-        <h2>Tentang Saya</h2>
-        <p>Saya adalah seorang pembelajar yang antusias dan sedang mendalami pengembangan web. Memiliki ketertarikan kuat pada teknologi, manajemen data, dan penyelesaian masalah teknis. Saya berorientasi pada detail, cepat beradaptasi dengan alat baru, dan memiliki semangat tinggi untuk memberikan kontribusi positif dalam lingkungan kerja yang kolaboratif.</p>
-    </section>
+        <button class="menu-btn" id="menuBtn"
+          aria-label="Buka menu" aria-expanded="false">☰</button>
 
-    <section>
-        <h2>Keterampilan Teknis</h2>
-        <ul>
-            <li><strong>Pengembangan Web Dasar:</strong> HTML5, CSS3, dan pemahaman dasar tentang struktur halaman website.</li>
-            <li><strong>Pengembangan Perangkat Lunak:</strong> Penggunaan VS Code (Visual Studio Code), pengelolaan file proyek, dan konfigurasi lingkungan pengembangan menggunakan Node.js.</li>
-            <li><strong>Produktivitas & Administrasi:</strong> Pengoperasian sistem operasi Windows, manajemen file, dan Microsoft Office.</li>
-            <li><strong>Soft Skills:</strong> Kemampuan memecahkan masalah (troubleshooting) secara mandiri, keinginan belajar yang tinggi, dan komunikasi yang efektif.</li>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#skills">Keahlian</a></li>
+          <li><a href="#projects">Proyek</a></li>
+          <li><a href="#services">Layanan</a></li>
+          <li><a href="#contact">Kontak</a></li>
         </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+
+        <div>
+          <span class="tag">Freelance Web Developer</span>
+
+          <h1>Halo, saya <span>Rapitah.</span></h1>
+
+          <p>
+            Saya membantu membuat website dan dashboard yang
+            sederhana, responsif, serta mudah digunakan.
+            Mari wujudkan ide digital menjadi sebuah website.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              Lihat Proyek
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+              Hubungi Saya
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-icon">R</div>
+          <h3>Rapitah</h3>
+          <p>Freelance Web Developer</p>
+          <span class="status">● Terbuka untuk proyek</span>
+        </div>
+
+      </div>
     </section>
 
-    <section>
-        <h2>Proyek & Pengalaman Belajar</h2>
-        <p><strong>Pengembangan Situs CV Digital</strong><br>
-        Mengembangkan dan mengonfigurasi proyek website pribadi menggunakan HTML dan lingkungan kerja Node.js, termasuk pengelolaan *environment setup* dan *debugging* teknis dalam proses pengembangan.</p>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <small>Perkenalan</small>
+          <h2>Tentang Saya</h2>
+          <p>Mengenal lebih dekat profil dan perjalanan saya.</p>
+        </div>
+
+        <div class="about-content">
+          <p>
+            Saya adalah mahasiswa S1 Sistem Komputer yang memiliki
+            ketertarikan pada pengembangan website dan teknologi.
+            Saya senang mempelajari hal baru, membangun solusi digital,
+            serta mengembangkan kemampuan melalui berbagai proyek.
+            Saya terus belajar untuk menghasilkan website yang
+            fungsional, responsif, dan mudah digunakan.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section>
-        <h2>Pendidikan</h2>
-        <p><strong><Universitas Pamulang<strong><br>
-        S1 Sistem Komputer (Sedang Menempuh Pendidikan / Semester 4)</p>
-        <p>Saat ini berfokus pada pengembangan keterampilan teknis mandiri melalui pelatihan pengembangan web dan aplikasi.</p>
+    <!-- SKILLS -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <small>Kemampuan</small>
+          <h2>Keahlian Teknis</h2>
+          <p>Teknologi yang saya pelajari dan gunakan dalam proyek.</p>
+        </div>
+
+        <div class="skill-grid">
+
+          <div class="skill-card">
+            <div class="skill-icon">⌨</div>
+            <h3>HTML & CSS</h3>
+            <p>Membangun struktur halaman website dan
+              mengatur desain agar responsif.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">JS</div>
+            <h3>JavaScript</h3>
+            <p>Membuat interaksi dan fungsi dasar
+              pada halaman website.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">⚙</div>
+            <h3>Node.js & Express</h3>
+            <p>Mempelajari pengembangan server
+              dan aplikasi berbasis web.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">DB</div>
+            <h3>SQLite</h3>
+            <p>Mengelola dan menyimpan data
+              menggunakan database sederhana.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">▣</div>
+            <h3>VS Code</h3>
+            <p>Menggunakan editor kode untuk
+              mengembangkan dan mengelola proyek.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">↗</div>
+            <h3>Responsive Design</h3>
+            <p>Membuat tampilan website yang
+              menyesuaikan ukuran layar perangkat.</p>
+          </div>
+
+        </div>
+      </div>
     </section>
-</div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <small>Hasil Pekerjaan</small>
+          <h2>Proyek Saya</h2>
+          <p>Beberapa contoh proyek akademik dan pengembangan
+            yang pernah saya kerjakan.</p>
+        </div>
+
+        <div class="project-grid">
+
+          <article class="project-card">
+            <div class="project-image">🌐</div>
+            <div class="project-info">
+              <h3>Website CV Digital</h3>
+              <p>
+                Website portofolio pribadi untuk menampilkan
+                profil, keahlian, pendidikan, dan informasi kontak.
+              </p>
+              <span class="project-type">HTML • CSS</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">📊</div>
+            <div class="project-info">
+              <h3>Dashboard Monitoring</h3>
+              <p>
+                Proyek akademik pengembangan dashboard untuk
+                menampilkan informasi dan data monitoring
+                menggunakan teknologi berbasis web.
+              </p>
+              <span class="project-type">Node.js • Express • SQLite</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <small>Jasa Saya</small>
+          <h2>Layanan Freelance</h2>
+          <p>Beberapa layanan pengembangan website
+            yang dapat saya kerjakan sesuai kebutuhan.</p>
+        </div>
+
+        <div class="service-grid">
+
+          <div class="service-card">
+            <div class="skill-icon">🌐</div>
+            <h3>Pembuatan Website</h3>
+            <p>
+              Pembuatan website profil pribadi,
+              landing page, dan website informasi sederhana.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="skill-icon">📈</div>
+            <h3>Dashboard Website</h3>
+            <p>
+              Pembuatan tampilan dashboard,
+              tabel data, dan informasi monitoring.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="skill-icon">🛠</div>
+            <h3>Perbaikan Tampilan</h3>
+            <p>
+              Membantu memperbaiki CSS, layout,
+              dan tampilan website agar lebih responsif.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Mari Bekerja Sama</h2>
+          <p>
+            Punya ide atau membutuhkan bantuan membuat website?
+            Silakan hubungi saya untuk berdiskusi.
+          </p>
+
+          <a class="btn"
+            href="mailto:rufitaaprilia1@gmail.com">
+            Kirim Email
+          </a>
+
+          <div class="social-links">
+            <a href="mailto:rufitaaprilia1@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/rufita-aprilia-45629937a"
+              target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Rapitah. All Rights Reserved.</p>
+      <p>Freelance Web Developer</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("active");
+      menuBtn.setAttribute("aria-expanded", isOpen);
+      menuBtn.textContent = isOpen ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 
 </body>
 </html>
